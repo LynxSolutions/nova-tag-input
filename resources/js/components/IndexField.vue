@@ -18,19 +18,20 @@ export default {
   mounted() {
     vm = this;
     this.newField = this.field;
-
+    this.fieldLabel = '<div class="' + this.tagsWrapperClass + '">';
     if (this.field.value) {
-      console.log(this.field.value);
       let items = JSON.parse(this.field.value);
 
-      let others = items.length > 1 ? " and others" : "";
+      if (items.length) {
+        let others = items.length > 1 ? " and others" : "";
 
-      vm.tags +=
-        '<span class="' + vm.tagClass + '">' + items[0] + others + "</span>";
+        vm.tags +=
+          '<span class="' + vm.tagClass + '">' + items[0] + others + "</span>";
+      }
 
-      this.fieldLabel =
-        '<div class="' + this.tagsWrapperClass + '">' + vm.tags + "</div>";
+      this.fieldLabel += vm.tags;
     }
+    this.fieldLabel += "</div>";
   },
 };
 </script>
