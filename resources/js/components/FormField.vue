@@ -44,6 +44,12 @@ export default {
   props: ["resourceName", "resourceId", "field"],
 
   mounted() {
+    if (this.field.attribute === "author_list") {
+      this.$root.$on("fillAuthorTagsFromDoiButton", (authors) => {
+        this.field.value = JSON.parse(authors);
+        this.setInitialValue();
+      });
+    }
     // Set up default parameters
     this.autocompleteItems = this.field.autocompleteItems
       ? this.field.autocompleteItems
@@ -55,8 +61,7 @@ export default {
      * Set the initial, internal value for the field.
      */
     setInitialValue() {
-      // if (this.field.value)
-      this.value = JSON.parse(this.field.value) || [];
+      this.value = this.field.value || [];
 
       if (this.value !== "") {
         let tags = [];

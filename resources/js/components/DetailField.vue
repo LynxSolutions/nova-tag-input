@@ -20,19 +20,15 @@ export default {
     this.fieldLabel = this.field;
 
     if (this.field.value) {
-      let items = JSON.parse(this.field.value);
+      let items = this.field.value;
       items.forEach(function (item, index) {
-        // Backward compatibility in case tags are stored as object
-        let label =
-          typeof item === "object" && item.hasOwnProperty("text")
-            ? item.text
-            : item;
+        let label = item;
         vm.tags += '<span class="' + vm.tagClass + '">' + label + "</span>";
       });
 
       this.fieldLabel.value =
         '<div class="' + this.tagsWrapperClass + '">' + this.tags + "</div>";
-      this.fieldLabel.asHtml = true; // displays as html in the PanelItem component
+      this.fieldLabel.asHtml = true;
     }
   },
 };
