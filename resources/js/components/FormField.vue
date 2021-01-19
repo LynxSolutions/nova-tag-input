@@ -1,5 +1,5 @@
 <template>
-  <default-field :field="field" :errors="errors" :show-help-text="showHelpText">
+  <default-field :field="field" :errors="errors">
     <template slot="field">
       <vue-tags-input
         class="m-height-overflow"
